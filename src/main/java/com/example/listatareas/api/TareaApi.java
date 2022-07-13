@@ -35,6 +35,7 @@ public class TareaApi {
     //Actualiza una tarea en específico usando su ID, mediante una petición PUT
     @PutMapping("/tarea/{id}")
     public void actualizarTarea(@PathVariable Integer id, @RequestBody Tarea tarea) {
+        tarea.setId(id);
         dao.actualizar(tarea);
     }
 
