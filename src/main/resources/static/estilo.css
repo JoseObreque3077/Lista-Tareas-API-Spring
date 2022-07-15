@@ -1,0 +1,22 @@
+body {
+    background-color: #f4f5f6;
+}
+
+.lista-tarjetas {
+    background-color: lightblue;
+}
+
+.tarea-regular {
+    background-color: blueviolet;
+    color: white;
+}
+
+.tarea-proxima {
+    background-color: darkorange;
+    color: white;
+}
+
+.tarea-atrasada {
+    background-color: darkred;
+    color: white;
+}

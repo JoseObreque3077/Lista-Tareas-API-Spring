@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -26,6 +27,19 @@ public class Tarea {
     private String descripcionTarea;
 
     @Column(nullable = false)
-    private Date fechaLimite;
+    private LocalDate fechaLimite;
 
+    @Column(nullable = false)
+    private Boolean activa = false;
+
+    @Transient
+    public String getEstado() {
+        if (LocalDate.now().isBefore(fechaLimite.minusDays(3))) {
+            return "tarea-regular";
+        } else if (LocalDate.now().isAfter(fechaLimite)) {
+            return "tarea-atrasada";
+        } else {
+            return "tarea-proxima";
+        }
+    }
 }

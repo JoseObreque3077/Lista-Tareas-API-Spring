@@ -29,6 +29,7 @@ public class TareaApi {
     //Guarda una tarea, mediante una petición POST
     @PostMapping("/tarea")
     public void guardarTarea(@RequestBody Tarea tarea) {
+        tarea.setActiva(true); //Una tarea nueva siempre comienza con un estado activo, hasta completarse
         dao.guardar(tarea);
     }
 
