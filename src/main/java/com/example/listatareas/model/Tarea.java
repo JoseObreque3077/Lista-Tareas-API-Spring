@@ -3,8 +3,12 @@ package com.example.listatareas.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -19,18 +23,24 @@ public class Tarea {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-
+    @NotEmpty(message = "Este campo es obligatorio")
+    @Length(message = "Este campo acepta entre 3 y 75 caracteres", min = 3, max = 75)
+    @NotNull(message = "Este campo es obligatorio")
     @Column(nullable = false, unique = true, length = 75)
     private String tituloTarea;
 
+    @NotEmpty(message = "Este campo es obligatorio")
+    @Length(message = "Este campo acepta entre 3 y 300 caracteres", min = 3, max = 300)
+    @NotNull(message = "Este campo es obligatorio")
     @Column(nullable = false, length = 300)
     private String descripcionTarea;
 
+    @NotNull(message = "Este campo es obligatorio")
     @Column(nullable = false)
     private LocalDate fechaLimite;
 
     @Column(nullable = false)
-    private Boolean activa = false;
+    private Boolean activa;
 
     @Transient
     public String getEstado() {

@@ -20,3 +20,8 @@ body {
     background-color: darkred;
     color: white;
 }
+
+.tarea-completada {
+    background-color: darkgreen;
+    color: white;
+}
