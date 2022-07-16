@@ -2,6 +2,7 @@ package com.example.listatareas.controller;
 
 import com.example.listatareas.dao.TareaDao;
 import com.example.listatareas.model.Tarea;
+import com.example.listatareas.restTemplate.restTemplateProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,8 @@ public class WebController {
 
     @GetMapping("")
     public String inicio(Model model) {
-        model.addAttribute("tareas", dao.listar());
+        restTemplateProvider restTemplateProvider = new restTemplateProvider();
+        model.addAttribute("tareas", restTemplateProvider.getTareasFromApi());
         return "/paginas/listado";
     }
     @GetMapping("/tarea/nueva-tarea")
@@ -31,7 +33,17 @@ public class WebController {
 
     @PostMapping("tarea/tarea-nueva")
     public String crearNuevaTarea(@Valid Tarea tarea, BindingResult bindingResult, Model model) {
+        //Valor booleano que indica si la tarea ya existe en la DB
+        boolean tareaYaExiste = dao.buscarPorTitulo(tarea.getTituloTarea()).isPresent();
+        restTemplateProvider restTemplateProvider = new restTemplateProvider();
 
-        return "redirect:/";
+        if (bindingResult.hasErrors() || tareaYaExiste) {
+            model.addAttribute("tareaDuplicada", tareaYaExiste);
+            model.addAttribute("fechaHoy", LocalDate.now());
+            return "/paginas/formulario";
+        } else {
+            restTemplateProvider.saveTareaToApi(tarea);
+            return "redirect:/";
+        }
     }
 }

@@ -17,14 +17,18 @@
 							<div class="col-12 form-group mt-2">
 								<label class="form-label">Título de la Tarea:</label>
 								<input class="form-control" type="text" name="tituloTarea" placeholder="Ingrese el título de la tarea" th:field="*{tituloTarea}">
+								<span th:if="${#fields.hasErrors('tituloTarea')}" th:errors="*{tituloTarea}" th:class="error">Error</span>
+								<span th:if="${tareaDuplicada}" th:class="error">Este título ya está en uso</span>
 							</div>
 							<div class="col-12 form-group mt-2">
 								<label class="form-label">Descripción de la Tarea:</label>
 								<textarea class="form-control" rows="4" name="descripcionTarea" placeholder="Ingrese un detalle de la tarea" th:field="*{descripcionTarea}"></textarea>
+								<span th:if="${#fields.hasErrors('descripcionTarea')}" th:errors="*{descripcionTarea}" th:class="error">Error</span>
 							</div>
 							<div class="col-12 form-group mt-2">
 								<label class="form-label">Fecha Límite:</label>
 								<input class="form-control" type="date" name="fechaLimite" th:field="*{fechaLimite}" th:min="${fechaHoy}">
+								<span th:if="${#fields.hasErrors('fechaLimite')}" th:errors="*{fechaLimite}" th:class="error">Error</span>
 							</div>
 							<div class="col-12 form-group mt-3 d-flex justify-content-center">
 								<button class="btn btn-danger text-light" type="submit">Guardar</button>

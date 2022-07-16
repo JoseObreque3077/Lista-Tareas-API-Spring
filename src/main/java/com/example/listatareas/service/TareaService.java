@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TareaService implements TareaDao {
@@ -38,5 +39,10 @@ public class TareaService implements TareaDao {
     @Override
     public List<Tarea> listar() {
         return repo.findAll();
+    }
+
+    @Override
+    public Optional<Tarea> buscarPorTitulo(String tituloTarea) {
+        return repo.findTareaByTituloTarea(tituloTarea);
     }
 }
