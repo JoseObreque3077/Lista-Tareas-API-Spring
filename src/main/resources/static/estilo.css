@@ -1,9 +1,12 @@
 body {
-    background-color: #f4f5f6;
+    background-image: linear-gradient(-225deg, #473B7B 0%, #3584A7 51%, #30D2BE 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
 }
 
 .lista-tarjetas {
-    background-color: lightblue;
+    background-color: #92bfc7;
 }
 
 .tarea-regular {
@@ -29,4 +32,8 @@ body {
 .error {
     color: red;
     background-color: #ffc6c6;
+}
+
+.fondo-navbar {
+    background-image: linear-gradient(-225deg, #3ccebc 0%, #47b3e3 51%, #8974ee 100%);
 }

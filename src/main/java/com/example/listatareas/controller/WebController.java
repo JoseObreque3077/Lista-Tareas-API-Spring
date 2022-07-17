@@ -83,4 +83,9 @@ public class WebController {
         restTemplateProvider.saveModifiedTareaToApi(tareaCompletada);
         return "redirect:/";
     }
+
+    @GetMapping("acerca-de")
+    public String acercaDe() {
+        return "/paginas/info";
+    }
 }

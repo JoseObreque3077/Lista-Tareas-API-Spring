@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/headerFrag :: head-fragment('Acerca de')"></head>
+<body>
+	<div th:replace="fragments/navbarFrag :: navbar-frag"></div>
+	<div class="container vh-100">
+		<div class="row mt-3">
+			<div class="col">
+				<h1 class="text-center text-light">¿En que consiste esta aplicación?</h1>
+			</div>
+		</div>
+		<div class="row my-3">
+			<div class="col">
+				<p class="text-light">
+					Esta aplicación web consiste en la implementación de una lista de tareas pendientes, cuya persistencia
+					de datos en una base de datos se realiza mediante una API REST desarrollada utilizando Spring Framework.
+					La conexión entre la interfaz de usuario y esta API se efectúa mediante RestTemplate de Spring.
+					Permite agregar nuevas tareas y modificar o eliminar las tareas existentes. Esta lista de tareas
+					utiliza un código de colores para indicar el estado actual de una tarea, el cual es:
+				</p>
+				<ul class="text-light">
+					<li>Color violeta: el plazo límite para la tarea es superior a 3 días a partir de la fecha actual.</li>
+					<li>Color naranja: el plazo límite se encuentra dentro de los próximos 3 días a partir de la fecha actual.</li>
+					<li>Color rojo: el plazo límite de la tarea ya ha pasado. La tarea se encuentra atrasada.</li>
+					<li>Color verde: la tarea ha sido completada.</li>
+				</ul>
+				<p class="text-center text-light">
+					Adicionalmente, cada tarjeta que contiene una tarea, indicará un mensaje diciendo si el plazo límite
+					ocurrirá pronto o si la tarea se encuentra fuera de plazo.
+				</p>
+				<h3 class="text-light">¿Como utilizar la lista de tareas?</h3>
+				<p class="text-light">
+					El uso de esta aplicación web es muy sencillo e intuitivo. A continuación se explican las acciones que
+					es posible realizar dentro del sitio:
+				</p>
+				<ul class="text-light mb-2">
+					<li>
+						Agregar nueva tarea: Para agregar una nueva tarea, basta con pulsar el botón que lleva la leyenda
+						"Agregar Tarea" y se abrirá un pequeño formulario que permite completar la información de la tarea
+						que se desea agregar: título/nombre de la tarea, una descripción de hasta 300 caracteres y la fecha
+						límite para el cumplimiento de la tarea. Para que el registro sea exitoso, se debe pulsar el botón
+						de color rojo con la leyenda "Guardar".
+					</li>
+					<li>
+						Editar Tarea: Para editar una tarea existente, se debe pulsar el botón con la leyenda "Editar".
+						Aparece un formulario similar al de registro de nuevas tareas, con la diferencia que este incluye
+						la información actual de la tarea, para que esta pueda ser editada. Para guardar los cambios, basta
+						con presionar el botón de color rojo con la leyenda "Guardar".
+					</li>
+					<li>
+						Eliminar Tarea: Para eliminar una tarea existente, se debe presionar el botón con la leyenda "Borrar".
+						Aparecerá una ventana de confirmación, pidiendo al usuario indicar si realmente desea borrar la tarea
+						de forma permanente o no.
+					</li>
+					<li>
+						Completar Tarea: Para marcar una tarea como completada, se debe pulsar el botón con la leyenda
+						"Completar". Se abrirá una ventana de confirmación, para saber si llevar a cabo la acción o no.
+						Una vez completada, la tarea seguirá apareciendo en la lista de tareas, permitiendo solo eliminar
+						el registro.
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
