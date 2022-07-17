@@ -53,5 +53,29 @@ public class restTemplateProvider {
         );
     }
 
-    //TODO: método para trabajar con edición de una tarea (el formulario de edición debe indicar si un nuevo titulo ya está en uso!)
+    public void saveModifiedTareaToApi(Tarea tarea) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<Tarea> request = new HttpEntity<>(tarea, headers);
+        String url = "http://localhost:8080/api/tarea";
+        ResponseEntity<Object> response = restTemplate.exchange(
+                url,
+                HttpMethod.PUT,
+                request,
+                new ParameterizedTypeReference<>() {}
+        );
+    }
+
+    public void deleteTareaFromApi(Integer id) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<String> request = new HttpEntity<>(headers);
+        String url = "http://localhost:8080/api/tarea/" + id;
+        ResponseEntity<Object> response = restTemplate.exchange(
+                url,
+                HttpMethod.DELETE,
+                request,
+                new ParameterizedTypeReference<>() {}
+        );
+    }
 }

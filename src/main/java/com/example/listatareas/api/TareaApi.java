@@ -14,33 +14,32 @@ public class TareaApi {
     @Autowired
     private TareaDao dao;
 
-    //Busca una tarea en específico usando el ID, mediante una petición GET
+    //Busca una tarea en específico usando el ID, mediante una petición GET (para formulario de edición)
     @GetMapping("/tarea/{id}")
     public Tarea buscarTarea(@PathVariable Integer id) {
         return dao.buscar(id);
     }
 
-    //Busca todas las tareas, mediante una petición GET
+    //Busca todas las tareas, mediante una petición GET (para listado de tareas)
     @GetMapping("/tareas")
     public List<Tarea> buscarTareas() {
         return dao.listar();
     }
 
-    //Guarda una tarea, mediante una petición POST
+    //Guarda una tarea, mediante una petición POST (para guardar lo ingresado en formulario de nueva tarea)
     @PostMapping("/tarea")
     public void guardarTarea(@RequestBody Tarea tarea) {
         tarea.setActiva(true); //Una tarea nueva siempre comienza con un estado activo, hasta completarse
         dao.guardar(tarea);
     }
 
-    //Actualiza una tarea en específico usando su ID, mediante una petición PUT
-    @PutMapping("/tarea/{id}")
-    public void actualizarTarea(@PathVariable Integer id, @RequestBody Tarea tarea) {
-        tarea.setId(id);
+    //Actualiza una tarea en específico usando su ID, mediante una petición PUT (para actualizar una tarea, desde formulario de edición)
+    @PutMapping("/tarea")
+    public void actualizarTarea(@RequestBody Tarea tarea) {
         dao.actualizar(tarea);
     }
 
-    //Elimina una tarea en específico usando su ID, mediante una petición DELETE
+    //Elimina una tarea en específico usando su ID, mediante una petición DELETE (desde botón de eliminación)
     @DeleteMapping("tarea/{id}")
     public void eliminarTarea(@PathVariable Integer id) {
         dao.eliminar(id);
