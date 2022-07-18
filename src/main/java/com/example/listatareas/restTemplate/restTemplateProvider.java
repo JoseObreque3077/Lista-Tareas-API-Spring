@@ -16,7 +16,7 @@ public class restTemplateProvider {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> request = new HttpEntity<>(headers);
-        String url = "http://localhost:8080/api/tarea/" + id;
+        String url = "https://lista-tareas-api-spring.herokuapp.com/api/tarea/" + id;
         ResponseEntity<Tarea> response = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
@@ -30,7 +30,7 @@ public class restTemplateProvider {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> request = new HttpEntity<>(headers);
-        String url = "http://localhost:8080/api/tareas";
+        String url = "https://lista-tareas-api-spring.herokuapp.com/api/tareas";
         ResponseEntity<List<Tarea>> response = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
@@ -44,7 +44,7 @@ public class restTemplateProvider {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<Tarea> request = new HttpEntity<>(tarea, headers);
-        String url = "http://localhost:8080/api/tarea";
+        String url = "https://lista-tareas-api-spring.herokuapp.com/api/tarea";
         ResponseEntity<Object> response = restTemplate.exchange(
                 url,
                 HttpMethod.POST,
@@ -57,7 +57,7 @@ public class restTemplateProvider {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<Tarea> request = new HttpEntity<>(tarea, headers);
-        String url = "http://localhost:8080/api/tarea";
+        String url = "https://lista-tareas-api-spring.herokuapp.com/api/tarea";
         ResponseEntity<Object> response = restTemplate.exchange(
                 url,
                 HttpMethod.PUT,
@@ -70,7 +70,7 @@ public class restTemplateProvider {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> request = new HttpEntity<>(headers);
-        String url = "http://localhost:8080/api/tarea/" + id;
+        String url = "https://lista-tareas-api-spring.herokuapp.com/api/tarea/" + id;
         ResponseEntity<Object> response = restTemplate.exchange(
                 url,
                 HttpMethod.DELETE,
