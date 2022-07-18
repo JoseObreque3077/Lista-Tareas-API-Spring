@@ -20,7 +20,7 @@ public class WebController {
     @Autowired
     private TareaDao dao;
 
-    @GetMapping("")
+    @GetMapping("/")
     public String inicio(Model model) {
         restTemplateProvider restTemplateProvider = new restTemplateProvider();
         model.addAttribute("tareas", restTemplateProvider.getTareasFromApi());
@@ -33,7 +33,7 @@ public class WebController {
         return "paginas/formulario";
     }
 
-    @PostMapping("tarea/tarea-nueva")
+    @PostMapping("/tarea/tarea-nueva")
     public String crearNuevaTarea(@Valid Tarea tarea, BindingResult bindingResult, Model model) {
         //Valor booleano que indica si la tarea ya existe en la DB
         boolean tareaYaExiste = dao.buscarPorTitulo(tarea.getTituloTarea()).isPresent();
@@ -48,14 +48,14 @@ public class WebController {
         }
     }
 
-    @GetMapping("tarea/modificar-tarea/{id}")
+    @GetMapping("/tarea/modificar-tarea/{id}")
     public String modificarTarea(@PathVariable Integer id, Model model) {
         model.addAttribute("tarea", dao.buscar(id));
         model.addAttribute("fechaHoy", LocalDate.now());
         return "paginas/formularioMod";
     }
 
-    @PostMapping("tarea/modificar-tarea")
+    @PostMapping("/tarea/modificar-tarea")
     public String guardarTareaModificada(@Valid Tarea tarea, BindingResult bindingResult, Model model, @RequestParam("tituloTareaAnterior") String tituloTareaAnterior) {
         //No se puede modificar el título de la tarea actual si este ya está en uso
         boolean TareaDuplicada = dao.buscarPorTitulo(tarea.getTituloTarea()).isPresent() && !tituloTareaAnterior.equals(tarea.getTituloTarea());
@@ -70,14 +70,14 @@ public class WebController {
         }
     }
 
-    @GetMapping("tarea/eliminar-tarea/{id}")
+    @GetMapping("/tarea/eliminar-tarea/{id}")
     public String eliminarTarea(@PathVariable Integer id) {
         restTemplateProvider restTemplateProvider = new restTemplateProvider();
         restTemplateProvider.deleteTareaFromApi(id);
         return "redirect:/";
     }
 
-    @GetMapping("tarea/completar-tarea/{id}")
+    @GetMapping("/tarea/completar-tarea/{id}")
     public String completarTarea(@PathVariable Integer id) {
         restTemplateProvider restTemplateProvider = new restTemplateProvider();
         Tarea tareaCompletada = dao.buscar(id);
@@ -86,7 +86,7 @@ public class WebController {
         return "redirect:/";
     }
 
-    @GetMapping("acerca-de")
+    @GetMapping("/acerca-de")
     public String acercaDe() {
         return "paginas/info";
     }
