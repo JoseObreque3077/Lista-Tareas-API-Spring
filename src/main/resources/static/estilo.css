@@ -1,5 +1,5 @@
 body {
-    background-image: linear-gradient(-225deg, #473B7B 0%, #3584A7 51%, #30D2BE 100%);
+    background-color: #330867;
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100%;
@@ -10,12 +10,12 @@ body {
 }
 
 .tarea-regular {
-    background-color: blueviolet;
+    background-color: #611da1;
     color: white;
 }
 
 .tarea-proxima {
-    background-color: darkorange;
+    background-color: #c46c00;
     color: white;
 }
 
@@ -35,5 +35,5 @@ body {
 }
 
 .fondo-navbar {
-    background-image: linear-gradient(-225deg, #3ccebc 0%, #47b3e3 51%, #8974ee 100%);
+    background-color: #6e7bbd;
 }

@@ -24,13 +24,13 @@ public class WebController {
     public String inicio(Model model) {
         restTemplateProvider restTemplateProvider = new restTemplateProvider();
         model.addAttribute("tareas", restTemplateProvider.getTareasFromApi());
-        return "/paginas/listado";
+        return "paginas/listado";
     }
     @GetMapping("/tarea/nueva-tarea")
     public String nuevaTarea(Tarea tarea, Model model) {
         model.addAttribute("tarea", tarea);
         model.addAttribute("fechaHoy", LocalDate.now());
-        return "/paginas/formulario";
+        return "paginas/formulario";
     }
 
     @PostMapping("tarea/tarea-nueva")
@@ -41,7 +41,7 @@ public class WebController {
         if (bindingResult.hasErrors() || tareaYaExiste) {
             model.addAttribute("tareaDuplicada", tareaYaExiste);
             model.addAttribute("fechaHoy", LocalDate.now());
-            return "/paginas/formulario";
+            return "paginas/formulario";
         } else {
             restTemplateProvider.saveTareaToApi(tarea);
             return "redirect:/";
@@ -51,7 +51,8 @@ public class WebController {
     @GetMapping("tarea/modificar-tarea/{id}")
     public String modificarTarea(@PathVariable Integer id, Model model) {
         model.addAttribute("tarea", dao.buscar(id));
-        return "/paginas/formularioMod";
+        model.addAttribute("fechaHoy", LocalDate.now());
+        return "paginas/formularioMod";
     }
 
     @PostMapping("tarea/modificar-tarea")
@@ -61,7 +62,8 @@ public class WebController {
         restTemplateProvider restTemplateProvider = new restTemplateProvider();
         if (bindingResult.hasErrors() || TareaDuplicada) {
             model.addAttribute("tareaDuplicada", TareaDuplicada);
-            return "/paginas/formularioMod";
+            model.addAttribute("fechaHoy", LocalDate.now());
+            return "paginas/formularioMod";
         } else {
             restTemplateProvider.saveModifiedTareaToApi(tarea);
             return "redirect:/";
@@ -86,6 +88,6 @@ public class WebController {
 
     @GetMapping("acerca-de")
     public String acercaDe() {
-        return "/paginas/info";
+        return "paginas/info";
     }
 }
