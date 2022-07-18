@@ -9,3 +9,11 @@ características de este proyecto, se encuentran las siguientes:
 * La persistencia de datos se realiza en un base de datos PostgreSQL en la nube (Heroku Postgres).
 * La API tiene habilitadas las peticiones:
     * GET - Para obtener una lista de tareas o bien, la información individual de una tarea.
+    * POST - Para guardar una nueva tarea.
+    * PUT - Para modificar los datos de una tarea existente o marcarla como completada.
+    * DELETE - Para eliminar de forma permanente una tarea.
+* El proyecto está desplegado en la plataforma Heroku.
+* El consumo de la API se realizó mediante el uso de RestTemplate de Spring Framework.
+
+## Enlace al Proyecto Desplegado:
+https://lista-tareas-api-spring.herokuapp.com/
