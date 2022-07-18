@@ -50,7 +50,8 @@ public class WebController {
 
     @GetMapping("/tarea/modificar-tarea/{id}")
     public String modificarTarea(@PathVariable Integer id, Model model) {
-        model.addAttribute("tarea", dao.buscar(id));
+        restTemplateProvider restTemplateProvider = new restTemplateProvider();
+        model.addAttribute("tarea", restTemplateProvider.getTareaFromApi(id));
         model.addAttribute("fechaHoy", LocalDate.now());
         return "paginas/formularioMod";
     }
